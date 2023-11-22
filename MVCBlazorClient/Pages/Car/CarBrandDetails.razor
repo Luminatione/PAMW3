@@ -1,0 +1,41 @@
+﻿@page "/carbrands/details/{id:int}"
+
+@using MVCClient.Services;
+@using P06Shop.Shared.Cars;
+@inject ICarBrandService CarBrandService
+
+<h3>Car Brand Details</h3>
+
+@if (carBrand == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <dl>
+        <dt>ID:</dt>
+        <dd>@carBrand.Id</dd>
+
+        <dt>Name:</dt>
+        <dd>@carBrand.Name</dd>
+
+        <dt>Origin Country:</dt>
+        <dd>@carBrand.OriginCountry</dd>
+    </dl>
+}
+
+@code {
+    CarBrand carBrand;
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await CarBrandService.GetCarBrandsAsync();
+        if (response.Success)
+        {
+            carBrand = response.Data.FirstOrDefault(c => c.Id == Id);
+        }
+    }
+}

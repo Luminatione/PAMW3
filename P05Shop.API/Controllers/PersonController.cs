@@ -3,7 +3,7 @@ using P06Shop.Shared.Cars;
 using P06Shop.Shared;
 using System;
 using System.Threading.Tasks;
-using P06Shop.API.Services.PersonService;
+using P06Shop.Shared.Services.CarService.Interface;
 
 namespace P05Shop.API.Controllers
 {

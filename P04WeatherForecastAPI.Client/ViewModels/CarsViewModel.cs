@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using P06Shop.Shared.Cars;
 using P06Shop.Shared.Services.CarService;
+using P06Shop.Shared.Services.CarService.Interface;
 using P06Shop.Shared.Services.ProductService;
 using P06Shop.Shared.Shop;
 using System;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using P06Shop.Shared.Services.CarService;
+using P06Shop.Shared.Services.CarService.Interface;
 
 namespace MVCClient.Controllers
 {

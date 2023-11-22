@@ -7,6 +7,7 @@ using P06Shop.Shared.Cars;
 using P06Shop.Shared;
 using P05Shop.API;
 using Microsoft.EntityFrameworkCore;
+using P06Shop.Shared.Services.CarService.Interface;
 
 namespace P06Shop.API.Services.PersonService
 {

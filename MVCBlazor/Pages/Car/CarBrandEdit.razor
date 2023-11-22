@@ -1,0 +1,56 @@
+﻿@page "/carbrands/edit/{id:int}"
+@using MVCClient.Services;
+@using P06Shop.Shared.Cars;
+@inject ICarBrandService CarBrandService
+@inject NavigationManager NavigationManager
+
+<h3>Edit Car Brand</h3>
+
+@if (carBrand == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <EditForm Model="carBrand" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="Name">Name:</label>
+            <InputText id="Name" @bind-Value="carBrand.Name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="OriginCountry">Origin Country:</label>
+            <InputText id="OriginCountry" @bind-Value="carBrand.OriginCountry" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </EditForm>
+}
+
+@code {
+    CarBrand carBrand;
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = (await CarBrandService.GetCarBrandsAsync());
+        if (response.Success)
+        {
+            carBrand = response.Data?.FirstOrDefault(c => c.Id == Id);
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        var response = await CarBrandService.UpdateCarBrandAsync(carBrand);
+        if (response.Success)
+        {
+            NavigationManager.NavigateTo("/carbrands");
+        }
+    }
+}

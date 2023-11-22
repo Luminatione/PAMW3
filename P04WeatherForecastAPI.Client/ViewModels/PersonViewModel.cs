@@ -1,13 +1,6 @@
-﻿using P06Shop.API.Services.PersonService;
-using P06Shop.Shared.Cars;
-using P06Shop.Shared.Services.ProductService;
-using P06Shop.Shared.Shop;
-using System;
-using System.Collections.Generic;
+﻿using P06Shop.Shared.Cars;
+using P06Shop.Shared.Services.CarService.Interface;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace P04WeatherForecastAPI.Client.ViewModels
 {

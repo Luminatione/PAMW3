@@ -1,6 +1,7 @@
 using MVCClient.Services;
 using P04WeatherForecastAPI.Client.Configuration;
 using P06Shop.Shared.Services.CarService;
+using P06Shop.Shared.Services.CarService.Interface;
 using P06Shop.Shared.Services.ProductService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +22,7 @@ var carBrandsURIBuilder = new UriBuilder(appSettingsSection.BaseAPIUrl)
 };
 //Microsoft.Extensions.Http
 
-builder.Services.Configure<AppSettings>(appSettings);
+    
 builder.Services.AddSingleton<ICarService, CarService>();
 builder.Services.AddSingleton<ICarBrandService, CarBrandService>();
 builder.Services.AddHttpClient<ICarService, CarService>(client => client.BaseAddress = carsURIBuilder.Uri);

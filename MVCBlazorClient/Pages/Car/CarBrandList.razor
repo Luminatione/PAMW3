@@ -1,0 +1,56 @@
+﻿@page "/carbrands"
+@using MVCClient.Services;
+@using P06Shop.Shared.Cars;
+@inject ICarBrandService CarBrandService
+
+<h3>Car Brands</h3>
+
+@if (carBrands == null)
+{
+    <p>Loading...</p>
+}
+else if (carBrands.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Origin Country</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var carBrand in carBrands)
+            {
+                <tr>
+                    <td>@carBrand.Id</td>
+                    <td>@carBrand.Name</td>
+                    <td>@carBrand.OriginCountry</td>
+                    <td>
+                        <a href="/carbrands/details/@carBrand.Id">Details</a> |
+                        <a href="/carbrands/edit/@carBrand.Id">Edit</a> |
+                        <a href="/carbrands/delete/@carBrand.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No car brands found.</p>
+}
+
+@code {
+    List<CarBrand> carBrands;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await CarBrandService.GetCarBrandsAsync();
+        if (response.Success)
+        {
+            carBrands = response.Data;
+        }
+    }
+}

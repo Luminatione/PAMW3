@@ -1,0 +1,38 @@
+﻿@page "/carbrands/create"
+
+@using MVCClient.Services;
+@using P06Shop.Shared.Cars;
+@inject ICarBrandService CarBrandService
+@inject NavigationManager NavigationManager
+
+<h3>Create New Car Brand</h3>
+
+<EditForm Model="newCarBrand" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="Name">Name:</label>
+        <InputText id="Name" @bind-Value="newCarBrand.Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="OriginCountry">Origin Country:</label>
+        <InputText id="OriginCountry" @bind-Value="newCarBrand.OriginCountry" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Car Brand</button>
+</EditForm>
+
+@code {
+    CarBrand newCarBrand = new CarBrand();
+
+    private async Task HandleValidSubmit()
+    {
+        var response = await CarBrandService.CreateCarBrandAsync(newCarBrand);
+        if (response.Success)
+        {
+            NavigationManager.NavigateTo("/carbrands");
+        }
+    }
+}

@@ -1,0 +1,44 @@
+﻿@page "/carbrands/delete/{id:int}"
+
+@using MVCClient.Services;
+@using P06Shop.Shared.Cars;
+@inject ICarBrandService CarBrandService
+@inject NavigationManager NavigationManager
+
+<h3>Delete Car Brand</h3>
+
+@if (carBrand == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <p>Are you sure you want to delete the car brand "@carBrand.Name"?</p>
+    <button class="btn btn-danger" @onclick="DeleteCarBrand">Delete</button>
+    <a href="/carbrands">Cancel</a>
+}
+
+@code {
+    CarBrand carBrand;
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await CarBrandService.GetCarBrandsAsync();
+        if (response.Success)
+        {
+            carBrand = response.Data.FirstOrDefault(e => e.Id == Id);
+        }
+    }
+
+    private async Task DeleteCarBrand()
+    {
+        var response = await CarBrandService.DeleteCarBrandAsync(Id);
+        if (response.Success)
+        {
+            NavigationManager.NavigateTo("/carbrands");
+        }
+    }
+}

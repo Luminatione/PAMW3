@@ -5,9 +5,21 @@ using P05Shop.API.Services.ProductService;
 using P06Shop.API.Services.CarBrandService;
 using P06Shop.API.Services.PersonService;
 using P06Shop.Shared.Services.CarService;
+using P06Shop.Shared.Services.CarService.Interface;
 using P06Shop.Shared.Services.ProductService;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "CORS",
+                      policy =>
+                      {
+                          policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                      });
+});
 
 builder.Services.AddDbContext<DataBaseContext>(options => options.UseNpgsql("Server=localhost;Username=postgres;Database=postgres"));
 
@@ -37,11 +49,13 @@ builder.Services.AddScoped<IPersonService, PersonService>();
 
 var app = builder.Build();
 
+app.UseCors("CORS");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    //app.UseSwagger();
-    //app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
