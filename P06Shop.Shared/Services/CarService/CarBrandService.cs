@@ -14,9 +14,9 @@ namespace MVCClient.Services
         private readonly AppSettings appSettings;
         private readonly HttpClient httpClient;
 
-        public CarBrandService(HttpClient httpClient, AppSettings appSettings)
+        public CarBrandService(HttpClient httpClient, IOptions<AppSettings> appSettings)
         {
-            this.appSettings = appSettings;
+            this.appSettings = appSettings.Value;
             this.httpClient = httpClient;
         }
 
