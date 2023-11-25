@@ -21,17 +21,21 @@ jobs:
         with:
           dotnet-version: '7.x'
           include-prerelease: true
+          
       - name: Set up dependencies
         run: dotnet workload restore 
+        
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
           java-version: '11'
+          
       - name: Clean
         run: dotnet clean
+        
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Release -p:UseParallelBuild=false
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
