@@ -23,7 +23,11 @@ jobs:
           include-prerelease: true
       - name: Set up dependencies
         run: dotnet workload restore 
-        
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
