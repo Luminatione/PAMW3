@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.CarBrandView"
+             Title="CarBrands">
+    <VerticalStackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Button Text="New" Command="{Binding NewCommand}" />
+            <Button Text="Save" Command="{Binding SaveCommand}" />
+            <Button Text="Delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedCarBrand}" />
+        </StackLayout>
+        <ListView ItemsSource="{Binding CarBrands}" SelectedItem="{Binding SelectedCarBrand, Mode=TwoWay}" Margin="10,10,10,10">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Id}" />
+                            <Entry Text="{Binding Name}" />
+                            <Entry Text="{Binding OriginCountry}" />
+                            <!-- Add other properties to display as needed -->
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</ContentPage>

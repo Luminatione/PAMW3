@@ -11,6 +11,5 @@ namespace P06Shop.Shared.Cars
         public int Id { get; set; }
         public string Name { get; set; }
         public string OriginCountry { get; set; }
-
     }
 }

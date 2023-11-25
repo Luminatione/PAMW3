@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCClient", "MVCClient\MVCC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCBlazorClient", "MVCBlazorClient\MVCBlazorClient.csproj", "{EC52C329-5D2F-4027-AF28-D961E5F68830}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVVMMAUI", "MVVMMAUI\MVVMMAUI.csproj", "{68C35EE7-8FE8-483C-BAC2-CA14291BB1FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiApp1", "MauiApp1\MauiApp1.csproj", "{5F962CBA-A46B-423A-A855-03106CF06EBB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,18 @@ Global
 		{EC52C329-5D2F-4027-AF28-D961E5F68830}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC52C329-5D2F-4027-AF28-D961E5F68830}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC52C329-5D2F-4027-AF28-D961E5F68830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68C35EE7-8FE8-483C-BAC2-CA14291BB1FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68C35EE7-8FE8-483C-BAC2-CA14291BB1FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68C35EE7-8FE8-483C-BAC2-CA14291BB1FF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{68C35EE7-8FE8-483C-BAC2-CA14291BB1FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68C35EE7-8FE8-483C-BAC2-CA14291BB1FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68C35EE7-8FE8-483C-BAC2-CA14291BB1FF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5F962CBA-A46B-423A-A855-03106CF06EBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F962CBA-A46B-423A-A855-03106CF06EBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F962CBA-A46B-423A-A855-03106CF06EBB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5F962CBA-A46B-423A-A855-03106CF06EBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F962CBA-A46B-423A-A855-03106CF06EBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F962CBA-A46B-423A-A855-03106CF06EBB}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
