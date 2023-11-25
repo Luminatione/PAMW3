@@ -23,7 +23,7 @@ jobs:
           include-prerelease: true
           
       - name: Restore Dependencies
-        run: dotnet restore
+        run: dotnet workload restore
         
       - name: Set up JDK
         uses: actions/setup-java@v2
@@ -33,6 +33,9 @@ jobs:
           
       - name: Clean
         run: dotnet clean
+        
+      - name: Restore Dependencies
+        run: dotnet restore
         
       - name: Build with dotnet
         run: dotnet build --configuration Release -p:UseParallelBuild=false
