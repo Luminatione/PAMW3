@@ -51,6 +51,7 @@ jobs:
           cmd /c "start dotnet run --urls=http://localhost:5123"
           cd ..
           dotnet test
+          exit 1
           
       - name: Create Ticket
         if: failure()
