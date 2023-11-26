@@ -44,6 +44,7 @@ jobs:
           cd ../MVCBlazorClient
           start "Client" "dotnet run --urls=http://localhost:5123" 
           cd ..
+          timeout 10
       - name: Test
         run: dotnet test
 
