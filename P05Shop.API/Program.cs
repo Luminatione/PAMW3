@@ -21,7 +21,7 @@ builder.Services.AddCors(options =>
                       });
 });
 
-builder.Services.AddDbContext<DataBaseContext>(options => options.UseNpgsql("Server=localhost;Username=postgres;Database=postgres"));
+builder.Services.AddDbContext<DataBaseContext>(options => options.UseNpgsql("Server=localhost;Username=postgres;Database=postgres;Password=postgres"));
 
 // Add services to the container.
 
