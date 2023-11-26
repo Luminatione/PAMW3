@@ -34,8 +34,9 @@ jobs:
       - name: Clean
         run: dotnet clean
         
-      - name: Restore Dependencies
-        run: dotnet restore
+      - name: List Processes
+        run: |
+          Get-Process | Where-Object { $_.Modules.FileName -eq 'D:\a\PAMW3\PAMW3\P06Shop.Shared\obj\Release\net7.0\P06Shop.Shared.dll' }
         
       - name: Build with dotnet
         run: dotnet build --configuration Release -p:UseParallelBuild=false
