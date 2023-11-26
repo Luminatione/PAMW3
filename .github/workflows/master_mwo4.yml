@@ -34,15 +34,17 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
         
-      - name: Run Application
-        run: |
-          cd ${{env.DOTNET_ROOT}}/myapp
-          dir
-      - name: Test
-        run: dotnet test
-
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+      - name: Run Application
+        run: |
+          dir
+          cd ${{env.DOTNET_ROOT}}/myapp
+          dir
+          
+      - name: Test
+        run: dotnet test
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
