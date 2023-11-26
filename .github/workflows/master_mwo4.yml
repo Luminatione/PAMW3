@@ -35,8 +35,10 @@ jobs:
         run: dotnet build --configuration Release
       - name: add migration
         run: |
+          cd P05Shop.API
           dotnet ef migrations add migration
           dotnet ef database update
+          cd ..
       
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
