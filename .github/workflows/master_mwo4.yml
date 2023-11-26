@@ -40,9 +40,9 @@ jobs:
       - name: Run Application
         run: |
           cd P05Shop.API
-          start "Server" "dotnet run --urls=http://localhost:5093" 
+          dotnet run --urls=http://localhost:5093
           cd ../MVCBlazorClient
-          start "Client" "dotnet run --urls=http://localhost:5123" 
+          dotnet run --urls=http://localhost:5123 
           cd ..
       - name: Wait for start
         uses: GuillaumeFalourd/wait-sleep-action@v1
