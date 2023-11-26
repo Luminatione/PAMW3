@@ -53,19 +53,30 @@ jobs:
           dotnet test
           
       - name: Create Ticket
-        uses: stefanstranger/azuredevops-bug-action@1.1
+        uses: fjogeleit/http-request-action@v1
         if: failure()
-        with:
-          OrganizationName: "01171749"
-          PAT: "PAT"
-          ProjectName: "MWO4"
-          AreaPath: "MWO4"
-          IterationPath: "MWO4\\Sprint 1"
-          GithubToken: "GithubToken"
-          WorkflowFileName: "master_mwo4.yml"
+        run: |
+          # Get the personal access token from GitHub secrets
+          AZURE_DEVOPS_TOKEN=${{ secrets.AZURE_DEVOPS_TOKEN }}
+          AZURE_DEVOPS_ORG_URL=https://dev.azure.com/your-organization
+          AZURE_DEVOPS_PROJECT=your-project
+          WORK_ITEM_TYPE=Task
+          WORK_ITEM_TITLE="Your Task Title"
+          echo '{
+            "op": "add",
+            "path": "/fields/System.Title",
+            "from": null,
+            "value": "'"$WORK_ITEM_TITLE"'"
+          }' > workitem.json
+          curl -X POST \
+            -H "Content-Type: application/json-patch+json" \
+            -H "Authorization: Basic $(echo -n ":$AZURE_DEVOPS_TOKEN" | base64)" \
+            --data @workitem.json \
+            "$AZURE_DEVOPS_ORG_URL/$AZURE_DEVOPS_PROJECT/_apis/wit/workitems/\$($WORK_ITEM_TYPE)?api-version=6.0" \
+            -o response.json
+          cat response.json
         env:
-          PAT: ${{ secrets.PAT}}
-          GithubToken: ${{ secrets.githubtoken}}
+          AZURE_DEVOPS_TOKEN: ${{ secrets.PAT }}
           
           
       - name: Upload artifact for deployment job
