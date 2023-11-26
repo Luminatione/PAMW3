@@ -45,9 +45,9 @@ jobs:
           start "Client" "dotnet run --urls=http://localhost:5123" 
           cd ..
       - name: Wait for start
-        uses: jakejarvis/wait-action@master
+        uses: GuillaumeFalourd/wait-sleep-action@v1
         with:
-          time: '15s'
+          time: '15'
       - name: Test
         run: dotnet test
 
