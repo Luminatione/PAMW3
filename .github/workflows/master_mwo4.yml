@@ -56,12 +56,6 @@ jobs:
       - name: Create Ticket
         if: failure()
         run: |
-          # Get the personal access token from GitHub secrets
-          AZURE_DEVOPS_TOKEN=${{ secrets.PAT }}
-          AZURE_DEVOPS_ORG_URL=https://dev.azure.com/01171749
-          AZURE_DEVOPS_PROJECT=MWO4
-          WORK_ITEM_TYPE=Issue
-          WORK_ITEM_TITLE="UI test failed"
           echo '{
             "op": "add",
             "path": "/fields/System.Title",
@@ -72,7 +66,10 @@ jobs:
           cat response.json
         env:
           AZURE_DEVOPS_TOKEN: ${{ secrets.PAT }}
-          
+          AZURE_DEVOPS_ORG_URL: https://dev.azure.com/01171749
+          AZURE_DEVOPS_PROJECT: MWO4
+          WORK_ITEM_TYPE: Issue
+          WORK_ITEM_TITLE: "UI test failed"
           
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
