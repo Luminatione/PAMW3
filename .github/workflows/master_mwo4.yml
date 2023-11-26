@@ -62,6 +62,9 @@ jobs:
             "from": null,
             "value": "UI test failed"
           }]' > workitem.json
+          echo "Azure DevOps Token: $AZURE_DEVOPS_TOKEN"
+          echo "API URL: https://dev.azure.com/01171749/MWO4/_apis/wit/workitems/\$Issue?api-version=7.1-preview.3"
+          echo "Work Item JSON: $(cat workitem.json)"
           curl -X POST -H "Content-Type: application/json-patch+json" -H "Authorization: Basic $AZURE_DEVOPS_TOKEN" -d workitem.json "https://dev.azure.com/01171749/MWO4/_apis/wit/workitems/\$Issue?api-version=7.1-preview.3" -o response.json
           cat response.json
         env:
