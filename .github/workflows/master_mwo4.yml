@@ -36,6 +36,7 @@ jobs:
       - name: add migration
         run: |
           cd P05Shop.API
+          dotnet tool restore
           dotnet ef migrations add migration
           dotnet ef database update
           cd ..
