@@ -40,9 +40,9 @@ jobs:
       - name: Run Application
         run: |
           cd P05Shop.API
-          start "Server" "dotnet run --urls=http://localhost:5093" 
+          start /B "dotnet run --urls=http://localhost:5093" 
           cd ../MVCBlazorClient
-          start "Client" "dotnet run --urls=http://localhost:5123" 
+          start /B "dotnet run --urls=http://localhost:5123" 
           cd ..
           dotnet test
       - name: Wait for start
