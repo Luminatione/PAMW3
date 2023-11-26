@@ -57,10 +57,10 @@ jobs:
         run: |
           # Get the personal access token from GitHub secrets
           AZURE_DEVOPS_TOKEN=${{ secrets.AZURE_DEVOPS_TOKEN }}
-          AZURE_DEVOPS_ORG_URL=https://dev.azure.com/your-organization
-          AZURE_DEVOPS_PROJECT=your-project
-          WORK_ITEM_TYPE=Task
-          WORK_ITEM_TITLE="Your Task Title"
+          AZURE_DEVOPS_ORG_URL=https://dev.azure.com/01171749
+          AZURE_DEVOPS_PROJECT=MWO4
+          WORK_ITEM_TYPE=Issue
+          WORK_ITEM_TITLE="UI test failed"
           echo '{
             "op": "add",
             "path": "/fields/System.Title",
@@ -70,7 +70,7 @@ jobs:
           curl -X POST \
             -H "Content-Type: application/json-patch+json" \
             -H "Authorization: Basic $(echo -n ":$AZURE_DEVOPS_TOKEN" | base64)" \
-            --data @workitem.json \
+            -d @workitem.json \
             "$AZURE_DEVOPS_ORG_URL/$AZURE_DEVOPS_PROJECT/_apis/wit/workitems/\$($WORK_ITEM_TYPE)?api-version=6.0" \
             -o response.json
           cat response.json
