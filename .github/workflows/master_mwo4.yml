@@ -52,6 +52,22 @@ jobs:
           cd ..
           dotnet test
           
+      - name: Create Ticket
+        uses: stefanstranger/azuredevops-bug-action@1.1
+        if: failure()
+        with:
+          OrganizationName: "01171749"
+          PAT: "PAT"
+          ProjectName: "MWO4"
+          AreaPath: "MWO4"
+          IterationPath: "MWO4\\Sprint 1"
+          GithubToken: "GithubToken"
+          WorkflowFileName: "master_mwo4.yml"
+        env:
+          PAT: ${{ secrets.PAT}}
+          GithubToken: ${{ secrets.githubtoken}}
+          
+          
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
