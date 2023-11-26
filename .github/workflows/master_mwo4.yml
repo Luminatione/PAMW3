@@ -60,16 +60,12 @@ jobs:
             "op": "add",
             "path": "/fields/System.Title",
             "from": null,
-            "value": "'"$WORK_ITEM_TITLE"'"
+            "value": "UI test failed"
           }' > workitem.json
-          curl -X POST -H "Content-Type: application/json-patch+json" -H "Authorization: Basic $(echo -n ":$AZURE_DEVOPS_TOKEN" | base64)" -d workitem.json "$AZURE_DEVOPS_ORG_URL/$AZURE_DEVOPS_PROJECT/_apis/wit/workitems/\$($WORK_ITEM_TYPE)?api-version=6.0" -o response.json
+          curl -X POST -H "Content-Type: application/json-patch+json" -H "Authorization: Basic $AZURE_DEVOPS_TOKEN" -d workitem.json "https://dev.azure.com/01171749/MWO4/_apis/wit/workitems/\$Issue?api-version=7.1-preview.3" -o response.json
           cat response.json
         env:
           AZURE_DEVOPS_TOKEN: ${{ secrets.PAT }}
-          AZURE_DEVOPS_ORG_URL: https://dev.azure.com/01171749
-          AZURE_DEVOPS_PROJECT: MWO4
-          WORK_ITEM_TYPE: Issue
-          WORK_ITEM_TITLE: "UI test failed"
           
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
