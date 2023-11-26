@@ -51,11 +51,7 @@ jobs:
           cmd /c "start dotnet run --urls=http://localhost:5123"
           cd ..
           dotnet test
-      - name: Wait for start
-        uses: GuillaumeFalourd/wait-sleep-action@v1
-        with:
-          time: '15'
-
+          
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
