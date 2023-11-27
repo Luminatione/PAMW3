@@ -13,7 +13,7 @@ using Microsoft.AspNetCore;
 
 namespace UITests
 {
-    public class UITests : WebApplicationFactory<P05Shop.API.Program>, IDisposable
+    public class UITests
     {
         private readonly IWebDriver _driver;
 
