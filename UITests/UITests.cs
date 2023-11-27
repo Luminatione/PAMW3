@@ -1,12 +1,19 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Testing;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using System.Diagnostics;
 using System.Xml.Linq;
 using Xunit;
+using P05Shop.API;
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.AspNetCore;
 
 namespace UITests
 {
-    public class UITests
+    public class UITests : WebApplicationFactory<P05Shop.API.Program>, IDisposable
     {
         private readonly IWebDriver _driver;
 

@@ -4,26 +4,41 @@ using MVCBlazorClient;
 using Microsoft.Extensions.Options;
 using MVCClient.Services;
 using P04WeatherForecastAPI.Client.Configuration;
+using System;
+using System.Net.Http;
 
-var builder = WebAssemblyHostBuilder.CreateDefault(args);
+namespace MVCBlazorClient;
 
-builder.RootComponents.Add<App>("#app");
-builder.RootComponents.Add<HeadOutlet>("head::after");
-
-var appSettings = builder.Configuration.GetSection(nameof(AppSettings));
-var appSettingsSection = appSettings.Get<AppSettings>();
-
-var carsURIBuilder = new UriBuilder(appSettingsSection.BaseAPIUrl)
+public class Program
 {
-    Path = appSettingsSection.CarsEndpoint.Base_url,
-};
-var carBrandsURIBuilder = new UriBuilder(appSettingsSection.BaseAPIUrl)
-{
-    Path = appSettingsSection.CarBrandsEndpoint.Base_url,
-};
-builder.Services.AddSingleton<IOptions<AppSettings>>(new OptionsWrapper<AppSettings>(appSettingsSection));
+    public static void Main(string[] args)
+    {
+        BuildWebAssemblyHost(args).RunAsync();
+    }
 
-builder.Services.AddScoped<ICarBrandService, CarBrandService>();
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = carBrandsURIBuilder.Uri });
+    public static WebAssemblyHost BuildWebAssemblyHost(string[] args)
+    {
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-await builder.Build().RunAsync();
+        builder.RootComponents.Add<App>("#app");
+        builder.RootComponents.Add<HeadOutlet>("head::after");
+
+        var appSettings = builder.Configuration.GetSection(nameof(AppSettings));
+        var appSettingsSection = appSettings.Get<AppSettings>();
+
+        var carsURIBuilder = new UriBuilder(appSettingsSection.BaseAPIUrl)
+        {
+            Path = appSettingsSection.CarsEndpoint.Base_url,
+        };
+        var carBrandsURIBuilder = new UriBuilder(appSettingsSection.BaseAPIUrl)
+        {
+            Path = appSettingsSection.CarBrandsEndpoint.Base_url,
+        };
+        builder.Services.AddSingleton<IOptions<AppSettings>>(new OptionsWrapper<AppSettings>(appSettingsSection));
+
+        builder.Services.AddScoped<ICarBrandService, CarBrandService>();
+        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = carBrandsURIBuilder.Uri });
+
+        return builder.Build();
+    }
+}

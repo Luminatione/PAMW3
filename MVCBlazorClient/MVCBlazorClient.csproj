@@ -37,5 +37,7 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
-
+  <ItemGroup>
+    <InternalsVisibleTo Include ="UITests"/>
+  </ItemGroup>
 </Project>
