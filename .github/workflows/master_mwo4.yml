@@ -14,72 +14,9 @@ jobs:
     runs-on: windows-latest
    
     steps:
-      - uses: actions/checkout@v4
-      - uses: ikalnytskyi/action-setup-postgres@v4
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '7.x'
-          include-prerelease: true
-          
-      - name: Restore Dependencies
-        run: dotnet workload restore
-        
-      - name: Set up JDK
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: '11'
-        
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
-      - name: add migration
+     
+      - name: Create Ticket
         run: |
-          cd P05Shop.API
-          dotnet tool restore
-          dotnet ef migrations add migration
-          dotnet ef database update
-          cd ..
-      
-      - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-      - name: Run Application
-        run: |
-          cd P05Shop.API
-          cmd /c "start dotnet run --urls=http://localhost:5093"
-          cd ../MVCBlazorClient
-          cmd /c "start dotnet run --urls=http://localhost:5123"
-          cd ..
-          dotnet test
-      - name: Wait for start
-        uses: GuillaumeFalourd/wait-sleep-action@v1
-        with:
-          time: '15'
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
-        with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
-
-  deploy:
-    runs-on: windows-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
-        with:
-          name: .net-app
-
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'MWO4'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_77516E9E06F44233BEF233DCDF234D47 }}
-          package: .
+          curl -g -X POST -H "Content-Type: application/json-patch+json" -H "Authorization: Basic OmZmYTc3djJ4M3NsbHFldnQyNjNlNHhxNWFyejVvYXcyYm9hdm03a2prdWx3cHFxeGhkdmE=" --data "[{ \\"op\\": \\"add\\", \\"path\\": \\"/fields/System.Title\\", \\"from\\": null, \\"value\\": \\"UI test failed\\" }]" "https://dev.azure.com/01171749/MWO4/_apis/wit/workitems/%24Issue?api-version=7.1-preview.3" -o response.json
+        env:
+          AZURE_DEVOPS_TOKEN: ${{ secrets.PAT }}
