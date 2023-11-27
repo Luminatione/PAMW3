@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		Podsumowanie.txt = Podsumowanie.txt
 		Shop.API.postman_collection.json = Shop.API.postman_collection.json
+		ticket.json = ticket.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P07Shop.DataSeeder", "P07Shop.DataSeeder\P07Shop.DataSeeder.csproj", "{4D04AEBB-640C-4FBC-BCD0-635E02163994}"
