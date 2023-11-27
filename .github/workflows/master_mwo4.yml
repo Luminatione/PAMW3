@@ -64,7 +64,7 @@ jobs:
           }]' > workitem.json
           echo "Azure DevOps Token: $AZURE_DEVOPS_TOKEN"
           echo "API URL: https://dev.azure.com/01171749/MWO4/_apis/wit/workitems/\$Issue?api-version=7.1-preview.3"
-          curl -g -X POST -H "Content-Type: application/json-patch+json" -H "Authorization: Basic OmZmYTc3djJ4M3NsbHFldnQyNjNlNHhxNWFyejVvYXcyYm9hdm03a2prdWx3cHFxeGhkdmE=" -d "[{ \"op\": \"add\", \"path\": \"/fields/System.Title\", \"from\": null, \"value\": \"UI test failed\" }]" "https://dev.azure.com/01171749/MWO4/_apis/wit/workitems/\$Issue?api-version=7.1-preview.3" -o response.json 
+          curl -g -X POST -H "Content-Type: application/json-patch+json" -H "Authorization: Basic OmZmYTc3djJ4M3NsbHFldnQyNjNlNHhxNWFyejVvYXcyYm9hdm03a2prdWx3cHFxeGhkdmE=" -d "[{ \"op\": \"add\", \"path\": \"/fields/System.Title\", \"from\": null, \"value\": \"UI test failed\" }]" "https://dev.azure.com/01171749/MWO4/_apis/wit/workitems/$$Issue?api-version=7.1-preview.3" -o response.json 
           cat response.json
         env:
           AZURE_DEVOPS_TOKEN: ${{ secrets.PAT }}
