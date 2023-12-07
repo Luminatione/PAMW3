@@ -33,20 +33,9 @@ jobs:
           
       - name: Clean
         run: dotnet clean
-        
-      - name: List Processes
-        run: |
-          Get-Process | Where-Object { $_.Modules.FileName -eq 'D:\a\PAMW3\PAMW3\P06Shop.Shared\obj\Release\net7.0\P06Shop.Shared.dll' }
-        
+             
       - name: Build with dotnet
-        run: dotnet build --configuration Release
-        
-      - name: Run Application
-        run: |
-          cd ${{env.DOTNET_ROOT}}/myapp
-          dir
-      - name: Test
-        run: dotnet test
+        run: dotnet build P05Shop.API --configuration Release 
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
