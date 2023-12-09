@@ -7,6 +7,7 @@ using P06Shop.API.Services.PersonService;
 using P06Shop.Shared.Services.CarService;
 using P06Shop.Shared.Services.CarService.Interface;
 using P06Shop.Shared.Services.ProductService;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +22,10 @@ builder.Services.AddCors(options =>
                       });
 });
 
-builder.Services.AddDbContext<DataBaseContext>(options => options.UseNpgsql("Server=localhost;Username=postgres;Database=postgres"));
-
+//builder.Services.AddDbContext<DataBaseContext>(options => options.UseNpgsql("Server=localhost;Username=postgres;Database=postgres"));
+builder.Configuration.AddEnvironmentVariables().AddJsonFile("appsettings.Development.json");
+var connection = builder.Configuration.GetSection("ConnectionStrings").Value;
+builder.Services.AddDbContext<DataBaseContext>(options => options.UseSqlServer(connection));
 // Add services to the container.
 
 builder.Services.AddControllers();

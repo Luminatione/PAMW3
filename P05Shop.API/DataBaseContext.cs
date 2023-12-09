@@ -15,6 +15,12 @@ namespace P05Shop.API
 
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Data Source=tcp:p05shopapidbserver.database.windows.net,1433;Initial Catalog=P05Shop.API_db;User Id=postgres@p05shopapidbserver;Password=qwerty123!");
+            base.OnConfiguring(optionsBuilder);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Car>().Property(e => e.Power).IsRequired();
