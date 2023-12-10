@@ -45,7 +45,7 @@ namespace MauiApp1
 			// services.Configure<AppSettings>(appSettings);
 			var appSettingsSection = new AppSettings()
 			{
-				BaseAPIUrl = "http://localhost:5093",
+				BaseAPIUrl = "https://mwo4.azurewebsites.net/",
 				CarBrandsEndpoint = new CRUDEndpoints()
 				{
 					Base_url = "api/CarBrand/",

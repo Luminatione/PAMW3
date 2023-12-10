@@ -83,7 +83,6 @@ namespace MauiApp1.View_Model
 			CarBrand newCarBrand = new CarBrand(); // Initialize with default values if needed
 			CarBrands.Insert(0, newCarBrand);
 			SelectedCarBrand = newCarBrand;
-			await _carBrandService.CreateCarBrandAsync(newCarBrand);
 		}
 
 		[RelayCommand]
