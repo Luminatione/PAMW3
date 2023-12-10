@@ -97,6 +97,7 @@ namespace P06Shop.API.Services.CarBrandService
             var response = new ServiceResponse();
             try
             {
+                carBrand.Id = Random.Shared.Next();
                 await dataBaseContext.CarBrands.AddAsync(carBrand);
                 response.Success = true;
                 response.Message = "Car brand created successfully.";

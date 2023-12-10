@@ -28,7 +28,7 @@ namespace P05Shop.API
             modelBuilder.Entity<CarBrand>().Property(e => e.Name).IsRequired();
 
             modelBuilder.Entity<CarBrand>().HasKey(cb => cb.Id);
-            modelBuilder.Entity<CarBrand>().Property(cb => cb.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<CarBrand>().Property(cb => cb.Id).ValueGeneratedOnAdd().UseIdentityAlwaysColumn();
 
             modelBuilder.Entity<Person>().HasKey(p => p.Id);
             modelBuilder.Entity<Person>().Property(p => p.Id).ValueGeneratedOnAdd();

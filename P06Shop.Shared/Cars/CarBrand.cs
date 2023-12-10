@@ -10,8 +10,6 @@ namespace P06Shop.Shared.Cars
 {
     public class CarBrand
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
         public string OriginCountry { get; set; }
